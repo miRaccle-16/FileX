@@ -1,0 +1,48 @@
+import os
+import art
+from colorama import Fore
+red = Fore.RED
+
+#</>MiracoolDev(){};..#
+
+print(red+art.text2art("   FileX",font="graffiti")+Fore.RESET)
+def file_eraser():
+
+	while True:
+		user1 = input(""""What do you want to do?
+		1.Check file list
+		2.Delete files list
+		3.Delete Folder\n""")
+		if user1 =="1":
+			try:
+				folder = input("Enter folder name: ")
+				show_files =os.listdir(folder)
+				print("\n"+str(show_files)+"\n")
+			except FileNotFoundError as e:
+				print(e)
+				
+		if user1 == "2" or user1 =="two".lower():
+			folder = input(">Insert the name of the folder: \n")
+			extension = input(">What extension? [.py/.txt/.db]?").lower()
+			try:
+				for file in show_files:
+					if file.endswith(extension):
+						os.remove(folder+"/"+file)
+				return show_files
+			except FileNotFoundError as e:
+				print(e)
+			except UnboundLocalError as e:
+				print(e)
+		if user1 =="3":
+			try:
+				folder = input("Enter name of folder: ")
+				os.listdir(folder)
+			except FileNotFoundError as e:
+				print(e)
+			
+			else:
+				(__import__('shutil')).rmtree(folder)
+				print("FOLDER TERMINATED!!")
+	
+call = file_eraser()
+print(call)
